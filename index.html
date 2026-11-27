@@ -88,7 +88,9 @@ const {data,error}=await db.auth.signUp({
 email,
 password,
 options:{
-emailRedirectTo:SITE_URL
+emailRedirectTo:options:{
+emailRedirectTo:"https://comforting-meringue-2fd019.netlify.app/"
+}
 }
 });
 
