@@ -137,7 +137,7 @@ async function forgotPassword(){
   message("Mengirim tautan reset password...");
 
   const {error}=await db.auth.resetPasswordForEmail(email,{
-    redirectTo:SITE_URL
+    redirectTo:SITE_URL + "/reset-password.html"
   });
 
   if(error){
