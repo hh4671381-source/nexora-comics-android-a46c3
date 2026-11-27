@@ -37,6 +37,7 @@ button{padding:13px;border:0;border-radius:8px;background:#8b5cf6;color:white;fo
 
 <button onclick="register()">Daftar</button>
 <button onclick="login()">Login</button>
+<button onclick="forgotPassword()" class="secondary">Lupa Password?</button>
 
 <div id="message"></div>
 </section>
@@ -125,7 +126,27 @@ if(error){
 message(error.message);
 }
 }
+async function forgotPassword(){
+  const email=document.getElementById("email").value.trim();
 
+  if(!email){
+    message("Masukkan email terlebih dahulu.");
+    return;
+  }
+
+  message("Mengirim tautan reset password...");
+
+  const {error}=await db.auth.resetPasswordForEmail(email,{
+    redirectTo:SITE_URL
+  });
+
+  if(error){
+    message(error.message);
+    return;
+  }
+
+  message("Tautan reset password sudah dikirim. Periksa email kamu.");
+  }
 async function logout(){
 await db.auth.signOut();
 }
